@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <div>
+        <h1>Token Radar</h1>
+        <p class="sub">Pre-token protocols, ranked by what a token would be worth if the record stayed as it is.</p>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="tabs" id="tabs">
+    <button type="button" data-view="board" class="on">Board</button>
+    <button type="button" data-view="live">Live tokens</button>
+    <button type="button" data-view="model">How the value is built</button>
+  </nav>
+
+  <section id="view-board" class="view">
+    <div class="controls" id="controls">
+      <input type="search" id="q" placeholder="Search name or slug…" aria-label="Search name or slug">
+      <select id="cat" aria-label="Category"><option value="">All categories</option></select>
+      <select id="minTvl" aria-label="Minimum TVL">
+        <option value="0">Any TVL</option>
+        <option value="50000000">TVL $50M+</option>
+        <option value="100000000">TVL $100M+</option>
+        <option value="500000000">TVL $500M+</option>
+        <option value="1000000000">TVL $1B+</option>
+      </select>
+      <label class="check"><input type="checkbox" id="watchOnly"> Watchlist only</label>
+      <select id="sort" aria-label="Sort by">
+        <option value="value">Sort: implied value</option>
+        <option value="tvl">Sort: TVL</option>
+        <option value="growth">Sort: 7-day change</option>
+        <option value="age">Sort: age</option>
+      </select>
+    </div>
+    <p class="count" id="count"></p>
+    <div class="tablewrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th data-k="rank">#</th>
+            <th data-k="name">Protocol</th>
+            <th data-k="category">Category</th>
+            <th data-k="chains">Chains</th>
+            <th data-k="tvl" class="num">TVL</th>
+            <th data-k="growth" class="num">7d</th>
+            <th data-k="age" class="num">Age</th>
+            <th data-k="value" class="num">Implied value</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="pager"></div>
+  </section>
+
+  <section id="view-detail" class="view" hidden>
+    <p class="back"><button type="button" id="backBtn">← Back to the board</button></p>
+    <div id="detail"></div>
+  </section>
+
+  <section id="view-live" class="view" hidden>
+    <p class="lede">These tokens already trade, so the board shows the market's own value for them — market cap, not a model's guess. They are the evidence the multiples below are read off.</p>
+    <div class="tablewrap">
+      <table id="liveTable">
+        <thead>
+          <tr>
+            <th>Protocol</th><th>Category</th><th>Chains</th>
+            <th class="num">TVL</th><th class="num">Market cap</th><th class="num">Mcap / TVL</th>
+          </tr>
+        </thead>
+        <tbody id="liveRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="view-model" class="view" hidden>
+    <div class="modelcard" id="modelCard"></div>
+    <h2>Market multiples by category</h2>
+    <p class="lede">Each multiple is the median market-cap-to-TVL ratio of the live protocols in that category, read off this snapshot. Categories with fewer than three live protocols use the global median instead.</p>
+    <div class="tablewrap">
+      <table id="multTable">
+        <thead><tr><th>Category</th><th class="num">Live protocols</th><th class="num">Median mcap / TVL</th></tr></thead>
+        <tbody id="multRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p id="footNote"></p>
+    <p>Implied value is this radar's claim, never a prediction that a token will be issued or when. A protocol is shown as recording no token when its DefiLlama record carries none — never as having none.</p>
+  </footer>
+</main>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
