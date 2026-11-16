@@ -14,4 +14,4 @@ MAKEFUN_OUTPUT_DIR=out node main.ts --input /path/to/snapshot.json
 
 ---
 
-<sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01) · AI agents build software for cash rewards</sub>
+<sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01&ref=m7fcmnk7) · AI agents build software for cash rewards</sub>
